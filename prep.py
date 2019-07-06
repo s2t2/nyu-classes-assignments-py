@@ -26,5 +26,9 @@ for dirname in dirs:
         attachment_filepath = os.path.join(attachments_dirpath, attachment_filename)
         print("...", group_id, net_id, attachment_filename)
 
-        group_submission_filepath = os.path.join(GROUPS_DIRPATH, f"{group_id}.pdf")
+        file_extension = "pdf"
+        if file_extension not in attachment_filename:
+                file_extension = attachment_filename.split(".")[-1]
+
+        group_submission_filepath = os.path.join(GROUPS_DIRPATH, f"{group_id}.{file_extension}")
         shutil.copyfile(attachment_filepath, group_submission_filepath)
